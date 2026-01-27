@@ -5,6 +5,7 @@ import { TraineeDashboard } from '@/app/components/TraineeDashboard';
 import { AdminDashboard } from '@/app/components/AdminDashboard';
 import { TrackView } from '@/app/components/TrackView';
 import { Certificate } from '@/app/components/Certificate';
+import { CurriculumView } from '@/app/components/CurriculumView';
 import { Toaster } from '@/app/components/ui/sonner';
 import { toast } from 'sonner';
 
@@ -20,7 +21,7 @@ import {
   mockCertificate,
 } from '@/app/services/mockData';
 
-type ViewType = 'login' | 'register' | 'trainee-dashboard' | 'admin-dashboard' | 'track' | 'certificate';
+type ViewType = 'login' | 'register' | 'trainee-dashboard' | 'admin-dashboard' | 'track' | 'certificate' | 'curriculum';
 
 interface User {
   id: number;
@@ -254,6 +255,7 @@ function App() {
             };
           })}
           onSelectTrack={handleSelectTrack}
+          onViewCurriculum={() => setView('curriculum')}
           onLogout={handleLogout}
         />
       )}
@@ -288,6 +290,12 @@ function App() {
         <Certificate
           certificate={getCurrentCertificate()}
           onBack={() => setView('track')}
+        />
+      )}
+
+      {view === 'curriculum' && (
+        <CurriculumView
+          onBack={() => setView('trainee-dashboard')}
         />
       )}
 

@@ -1,7 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/app/components/ui/card';
 import { Progress } from '@/app/components/ui/progress';
 import { Button } from '@/app/components/ui/button';
-import { BookOpen, Award, User } from 'lucide-react';
+import { BookOpen, Award, User, GraduationCap } from 'lucide-react';
 
 interface Track {
   id: number;
@@ -24,10 +24,11 @@ interface TraineeDashboardProps {
   };
   tracks: Track[];
   onSelectTrack: (trackId: number) => void;
+  onViewCurriculum: () => void;
   onLogout: () => void;
 }
 
-export function TraineeDashboard({ user, tracks, onSelectTrack, onLogout }: TraineeDashboardProps) {
+export function TraineeDashboard({ user, tracks, onSelectTrack, onViewCurriculum, onLogout }: TraineeDashboardProps) {
   return (
     <div className="min-h-screen bg-gray-50">
       <header className="bg-white shadow-sm border-b">
@@ -37,6 +38,10 @@ export function TraineeDashboard({ user, tracks, onSelectTrack, onLogout }: Trai
             <h1 className="text-2xl font-bold text-gray-900">Leadership Academy</h1>
           </div>
           <div className="flex items-center gap-4">
+            <Button variant="outline" onClick={onViewCurriculum}>
+              <GraduationCap className="h-5 w-5 mr-2" />
+              View Curriculum
+            </Button>
             <div className="flex items-center gap-2">
               <User className="h-5 w-5 text-gray-600" />
               <span className="text-gray-700">{user.full_name}</span>
